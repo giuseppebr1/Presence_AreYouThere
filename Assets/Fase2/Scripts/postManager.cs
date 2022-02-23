@@ -6,9 +6,7 @@ public class postManager : MonoBehaviour
 {
     public GameObject foto, finale;
     private bool spawned = false;
-    public float distance = 20f;
-
-    private Vector3 prova;
+    public float distance = 400f;
 
     public float movementSpeed = 15;
 
@@ -31,15 +29,10 @@ public class postManager : MonoBehaviour
             Vector3 cameraForward = camera.transform.forward;
             cameraForward.y = 0;
             cameraForward.Normalize();
-            Debug.Log("------ POSIZIONE: " + cameraForward);
 
             foto.SetActive(true);
             foto.transform.position = transform.position + new Vector3(0,8,0);
             foto.transform.forward = cameraForward;
-
-            prova = foto.transform.position - camera.transform.position;
-            prova.y = 0;
-            prova.Normalize();
 
             //finale = GameObject.Find("finale");
             audio.Play();
@@ -47,12 +40,8 @@ public class postManager : MonoBehaviour
         }
         else if(spawned)
         {
-            Debug.Log("foto "+ finale.transform.forward);
-            Debug.Log("camera "+ transform.forward);
-
-            //creare un vettore con due punti
-
-            //foto.transform.lo = foto.transform.position - (prova * movementSpeed * Time.deltaTime);
+            //Debug.Log("foto "+ finale.transform.forward);
+            //Debug.Log("camera "+ transform.forward);
 
             foto.transform.Translate(-Vector3.forward * movementSpeed * Time.deltaTime);
 
@@ -62,14 +51,21 @@ public class postManager : MonoBehaviour
              * e si va col fade al bianco sulla fase 3
              */
 
+            //PROVA GIUSEPPE velocità finale
+            if(distanzaFinale() < distance)
+            {
+                movementSpeed = distanzaFinale();
+            }
 
+            /*
             if (distanzaFinale() < 70 && distanzaFinale() > 68)
                 movementSpeed= movementSpeed/4*3;
             Debug.Log("distanza " + distanzaFinale());
             Debug.Log("velocita " + movementSpeed);
+            */
 
 
-            if (distanzaFinale() == 1)
+            if (distanzaFinale() < 5)
                 fade();
 
             return;
@@ -89,6 +85,7 @@ public class postManager : MonoBehaviour
     float distanzaFinale()
     {
         // Cambiare e mettere Vector3.Distance(camera, finale)
+        //return Vector3.Distance(camera.transform.position, finale.transform.position);
         return Mathf.Abs(finale.transform.position.z - transform.position.x);
     }
 
