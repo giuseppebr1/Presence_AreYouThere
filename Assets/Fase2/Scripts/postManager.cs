@@ -8,14 +8,19 @@ public class postManager : MonoBehaviour
     private bool spawned = false;
     public float distance = 20f;
 
-    public float movementSpeed = 10;
+    private Vector3 prova;
 
-    private Camera camera;
+    public float movementSpeed = 15;
+
+    public Camera camera;
+
+    public AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
+        //camera = Camera.main;
+        foto.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,20 +31,43 @@ public class postManager : MonoBehaviour
             Vector3 cameraForward = camera.transform.forward;
             cameraForward.y = 0;
             cameraForward.Normalize();
+            Debug.Log("------ POSIZIONE: " + cameraForward);
 
             foto.SetActive(true);
-            foto.transform.position = transform.position;
+            foto.transform.position = transform.position + new Vector3(0,8,0);
             foto.transform.forward = cameraForward;
 
+            prova = foto.transform.position - camera.transform.position;
+            prova.y = 0;
+            prova.Normalize();
+
             //finale = GameObject.Find("finale");
+            audio.Play();
             spawned = true;
         }
         else if(spawned)
         {
-            //Debug.Log("foto "+ finale.transform.position.z);
-            //Debug.Log("camera "+ transform.position.x);
+            Debug.Log("foto "+ finale.transform.forward);
+            Debug.Log("camera "+ transform.forward);
 
-            foto.transform.Translate(foto.transform.right * movementSpeed * Time.deltaTime);
+            //creare un vettore con due punti
+
+            //foto.transform.lo = foto.transform.position - (prova * movementSpeed * Time.deltaTime);
+
+            foto.transform.Translate(-Vector3.forward * movementSpeed * Time.deltaTime);
+
+            //ALTERNATIVA
+            /**
+             * Far fluttuare tutte le immagini, dopo un tot di tempo una delle immagini si ingrandisce
+             * e si va col fade al bianco sulla fase 3
+             */
+
+
+            if (distanzaFinale() < 70 && distanzaFinale() > 68)
+                movementSpeed= movementSpeed/4*3;
+            Debug.Log("distanza " + distanzaFinale());
+            Debug.Log("velocita " + movementSpeed);
+
 
             if (distanzaFinale() == 1)
                 fade();
@@ -47,14 +75,14 @@ public class postManager : MonoBehaviour
             return;
 
             //OLD CODE
-            if (distanzaFinale() == distance)
-                GetComponent<MainCamera>().sensitivity /= 2;
-            else if (distanzaFinale() == distance / 1.5)
-                GetComponent<MainCamera>().sensitivity /= 2;
-            else if (distanzaFinale() == distance / 2)
-                GetComponent<MainCamera>().sensitivity /= 2;
-            else if (distanzaFinale() == 1)
-                fade();
+            //if (distanzaFinale() == distance)
+            //    GetComponent<MainCamera>().sensitivity /= 2;
+            //else if (distanzaFinale() == distance / 1.5)
+            //    GetComponent<MainCamera>().sensitivity /= 2;
+            //else if (distanzaFinale() == distance / 2)
+            //    GetComponent<MainCamera>().sensitivity /= 2;
+            //else if (distanzaFinale() == 1)
+            //    fade();
         }
     }
 
