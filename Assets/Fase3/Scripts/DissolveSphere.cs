@@ -10,16 +10,27 @@ public class DissolveSphere : MonoBehaviour {
     private float d;
     private sparizioni sp;
     private float currentZ = 0;   // the amount of time that has elapsed so far
-
+    private AudioSource[] sounds;
+    private bool suonino = false;
     private void Start() {
+        sounds = new AudioSource[2];
         materials = GetComponent<Renderer>().materials;
         player = Camera.main.gameObject;
+        //player = GameObject.Find("OVRCameraRig");
         //player = GameObject.Find("Camera"); //debug
         sp = player.GetComponent<sparizioni>();
-        
+        if (GetComponent<AudioSource>())
+        {
+            sounds = GetComponents<AudioSource>();
+            suonino = true;
+        }
+
+
         foreach (Material mat in materials)
         {
             mat.SetFloat("_fade", 0);
+           // mat.SetFloat("_FresnelPower", 10f);
+            //mat.SetFloat("_InteriorSpread", -10f);
         }
     }
 
@@ -33,10 +44,20 @@ public class DissolveSphere : MonoBehaviour {
                 foreach (Material mat in materials)
                 {
                     //Debug.Log("Sono nella situazione");
+                    if(suonino)
+                        sounds[0].mute = false;
                     percent = Mathf.MoveTowards(percent, 255, sp.velocitaDissolvenza * Time.deltaTime);
                     mat.SetFloat("_fade", percent);
-                    if (percent > 254.9999f)
+                    
+                    if (percent >= 255f)
+                    {
+                        if (suonino)
+                        {
+                            sounds[0].mute = true;
+                            sounds[1].Play(0);
+                        }
                         assolto = true;
+                    }
                 }
             }
         }
@@ -45,8 +66,17 @@ public class DissolveSphere : MonoBehaviour {
             {
                 percent = Mathf.MoveTowards(percent, 0, (sp.velocitaDissolvenza+50f) * Time.deltaTime);
                 mat.SetFloat("_fade", percent);
-                if (percent < 0.0001f)
+
+                if (suonino)
+                {
+                    sounds[0].mute = false;
+                    sounds[1].Stop();
+                }
+                if (percent <= 0f)
+                {
+                    assolto = true;
                     dissolto = true;
+                }
             }
         else
             if (distanza(player) < sp.distance)
