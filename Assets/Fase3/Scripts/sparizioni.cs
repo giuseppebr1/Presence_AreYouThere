@@ -8,26 +8,33 @@ public class sparizioni : MonoBehaviour
     private DissolveSphere[] dis;
     private int i=0,j=0;
     public float distance = 20f;
+    //public float distanzaMax = 60, d;
+    public float velocitaDissolvenza = 4f;
 
     void Start()
     {
 
         DissolveSphere[] pgObjects = FindObjectsOfType<DissolveSphere>();
         foreach (var obj in pgObjects)
+        {
             pg.Add(obj.gameObject);
+            //dis.Add(obj.gameObject.GetComponent<DissolveSphere>());
+        }
 
         dis = new DissolveSphere[pg.Count];
         foreach (GameObject p in pg)
         {
-            dis[j] = p.GetComponent<DissolveSphere>(); 
+            dis[j++] = p.GetComponent<DissolveSphere>(); 
         }
+        j = 0;
+        GetComponent<apparizioni>().startGuidato();
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        switch (i) //per i casi in cui far spawnare a canone
+        /*switch (i) //per i casi in cui far spawnare a canone
         {
             case 0:
                 if (dis[j].assolto && distanza(pg[j])<=distance)
@@ -100,14 +107,19 @@ public class sparizioni : MonoBehaviour
 
             default:
                 break;
-        }
+        }*/
     }
 
     void dissolve(DissolveSphere go)
     {
         //Debug.Log("dissolvenza");
 
-        go.setDissolve(true);
+        go.dissolvenza();
+    }
+
+    public void assolve(int i)
+    {
+        dis[i++].assolvi = true;
     }
 
     float distanza(GameObject go)

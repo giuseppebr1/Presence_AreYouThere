@@ -40,7 +40,7 @@ Material:
     - Vector1_a3228f34b1734f39adf694b524aa054b: 1
     - _Fade: 0.19
     - _InteriorSpread: 1
-    - _fade: 0.29
+    - _fade: 125
     m_Colors:
     - Color_321321373e964dada331aee1e8090c7b: {r: 0.5651477, g: 0.6668867, b: 0.7075472, a: 0}
     - Color_8022160ae47341f4be5a0a7749f85f5d: {r: 0.990566, g: 0.978106, b: 0.978106, a: 1}

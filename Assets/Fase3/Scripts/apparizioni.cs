@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class apparizioni : MonoBehaviour
 {
-    public float frequenza = 5f;
+    public float frequenza = 2f;
     private sparizioni sp;
-    // Start is called before the first frame update
+    private int i = 0;
+    private float L;
+    public float primaAssolvenza=0.2f;
+    public float altreAssolvenze = 2f;
     void Start()
     {
-        InvokeRepeating("apparizioni", 0.5f, frequenza);
-        sp = GetComponent<sparizioni>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        
         
     }
 
+    public void startGuidato()
+    {
+        sp= GetComponent<sparizioni>();
+        L = sp.pg.Count;
+        InvokeRepeating("assolve", primaAssolvenza, altreAssolvenze);
+        if (i >= L)
+            return;
+    }
+
+    void assolve()
+    {
+        if (i < L)
+        {
+            //Debug.Log("apparizioni ");
+            sp.assolve(i++);
+        }
+    }
 
 }
