@@ -8768,6 +8768,7 @@ MonoBehaviour:
   next: 0
   fadeIn: 0
   fadeOut: 0
+  suona: 0
 --- !u!4 &672137859
 Transform:
   m_ObjectHideFlags: 0
@@ -9147,7 +9148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5412e2a134f5b6e4299195e0029c72e6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.47
+  m_Volume: 0.59
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10956,6 +10957,7 @@ MonoBehaviour:
   pathCreator: {fileID: 1292594505}
   endOfPathInstruction: 2
   speed: 19
+  duration: 5
 --- !u!23 &889669317
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14495,7 +14497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -79.60498, y: -7.5949097}
+  m_AnchoredPosition: {x: -79.604996, y: -7.5949097}
   m_SizeDelta: {x: 159.21005, y: 15.189974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1219954690
@@ -24281,6 +24283,7 @@ MonoBehaviour:
   pathCreator: {fileID: 1292594505}
   endOfPathInstruction: 2
   speed: 19
+  duration: 5
 --- !u!4 &2077991409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da5beac8bb80421469c5b6bf386d3aba, type: 3}
