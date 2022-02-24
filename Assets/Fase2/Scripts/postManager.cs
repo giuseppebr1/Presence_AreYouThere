@@ -52,9 +52,12 @@ public class postManager : MonoBehaviour
              */
 
             //PROVA GIUSEPPE velocità finale
-            if(distanzaFinale() < distance)
+            if(distanzaFinale() < distance && distanzaFinale() > 1)
             {
                 movementSpeed = distanzaFinale();
+            } else if(distanzaFinale() < 1)
+            {
+                movementSpeed = 0;
             }
 
             /*
@@ -67,6 +70,7 @@ public class postManager : MonoBehaviour
 
             if (distanzaFinale() < 5)
                 fade();
+
 
             return;
 
