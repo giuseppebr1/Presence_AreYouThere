@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     float percent = 0f;
     public bool next = false;
     public bool fadeIn = false, fadeOut = false;
-   
+   public bool suona=false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (suona)
+        //{
+        //    GetComponent<AudioSource>().Play();
+        //    suona = false;
+        //}
         if (fadeIn) //debug
         {
             //nextState();
@@ -94,11 +99,12 @@ public class GameManager : MonoBehaviour
                 break;
             case 2://4->5 tra le due pallex
                 state++;
+                //GetComponent<AudioSource>().Play(0);
                 sequenza[state].SetActive(true);
                 percent = 0f;
                 fadeOut = true;
                 break;
-            case 3://5->6 tra le due pallex
+            case 3://5->6 per il fine
                 state++;
                 sequenza[state].SetActive(true);
                 percent = 0f;

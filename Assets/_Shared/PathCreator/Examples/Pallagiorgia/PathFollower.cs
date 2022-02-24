@@ -20,7 +20,10 @@ namespace PathCreation.Examples
             //NEW VERSION
             List<Vector3> pathPoints = GetPathPoints(pathCreator, 100);
             transform.position = pathPoints[0];
-            transform.DOPath(pathPoints.ToArray(),duration);
+            transform.DOPath(pathPoints.ToArray(),duration).OnComplete(() => 
+            {
+                OnSpherePathComplete();
+            });
 
             return;
 
@@ -51,6 +54,12 @@ namespace PathCreation.Examples
         // is as close as possible to its position on the old path
         void OnPathChanged() {
             distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
+        }
+
+        void OnSpherePathComplete() 
+        { 
+
+        
         }
 
         public List<Vector3> GetPathPoints(PathCreator path, int resolution)

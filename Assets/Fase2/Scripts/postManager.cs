@@ -52,23 +52,23 @@ public class postManager : MonoBehaviour
              */
 
             //PROVA GIUSEPPE velocità finale
-            if(distanzaFinale() < distance && distanzaFinale() > 1)
+            if(distanzaFinale() < distance && distanzaFinale() > 18)
             {
                 movementSpeed = distanzaFinale();
-            } else if(distanzaFinale() < 1)
+            } else if(distanzaFinale() < 18)
             {
                 movementSpeed = 0;
             }
 
-            /*
-            if (distanzaFinale() < 70 && distanzaFinale() > 68)
-                movementSpeed= movementSpeed/4*3;
+
+            //if (distanzaFinale() < 70 && distanzaFinale() > 68)
+            //    movementSpeed = movementSpeed / 4 * 3;
             Debug.Log("distanza " + distanzaFinale());
-            Debug.Log("velocita " + movementSpeed);
-            */
+            //Debug.Log("velocita " + movementSpeed);
 
 
-            if (distanzaFinale() < 15)
+
+            if (distanzaFinale() < 25)
                 fade();
 
 
@@ -89,8 +89,8 @@ public class postManager : MonoBehaviour
     float distanzaFinale()
     {
         // Cambiare e mettere Vector3.Distance(camera, finale)
-        //return Vector3.Distance(camera.transform.position, finale.transform.position);
-        return Mathf.Abs(finale.transform.position.z - transform.position.x);
+        return Vector3.Distance(camera.transform.position, finale.transform.position);
+        //return Mathf.Abs(finale.transform.position.z - transform.position.x);
     }
 
     void fade()
