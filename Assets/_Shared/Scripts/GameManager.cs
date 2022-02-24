@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.Rendering;
 public class GameManager : MonoBehaviour
 {
     public int state = 0;
@@ -87,8 +87,9 @@ public class GameManager : MonoBehaviour
                 state++;
                 percent = 0f;
                 fadeOut = true;
+                //GraphicsSettings.renderPipelineAsset = null;
                 sequenza[state].SetActive(true);
-                GameObject.Find("360VideoView_Camera1").GetComponent<AudioSource>().Play(0);
+                GameObject.Find("Flippata").GetComponent<AudioSource>().Play(0);
                 StartCoroutine(stoppaRingtone());
                 break;
             case 2://4->5 tra le due pallex
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour
     IEnumerator stoppaRingtone()
     {
         yield return new WaitForSeconds(5);
-        GameObject.Find("360VideoView_Camera1").GetComponent<AudioSource>().Stop();
+        GameObject.Find("Flippata").GetComponent<AudioSource>().Stop();
     }
 
     //void fadeIn()
