@@ -23,6 +23,7 @@ public class DissolveSphere : MonoBehaviour {
         {
             sounds = GetComponents<AudioSource>();
             suonino = true;
+            sounds[2].Stop();
         }
 
 
@@ -44,17 +45,17 @@ public class DissolveSphere : MonoBehaviour {
                 foreach (Material mat in materials)
                 {
                     //Debug.Log("Sono nella situazione");
-                    if(suonino)
-                        sounds[0].mute = false;
+                    if (suonino)
+                        sounds[0].Play();
                     percent = Mathf.MoveTowards(percent, 255, sp.velocitaDissolvenza * Time.deltaTime);
                     mat.SetFloat("_fade", percent);
-                    
+
                     if (percent >= 255f)
                     {
                         if (suonino)
                         {
-                            sounds[0].mute = true;
-                            sounds[1].Play(0);
+                            sounds[0].Stop();
+                            sounds[1].Play();
                         }
                         assolto = true;
                     }
@@ -62,15 +63,19 @@ public class DissolveSphere : MonoBehaviour {
             }
         }
         else if (dissolvi)
+        {
+            if (suonino)
+                sounds[2].Play();
             foreach (Material mat in materials)
             {
-                percent = Mathf.MoveTowards(percent, 0, (sp.velocitaDissolvenza+50f) * Time.deltaTime);
+                percent = Mathf.MoveTowards(percent, 0, (sp.velocitaDissolvenza + 50f) * Time.deltaTime);
                 mat.SetFloat("_fade", percent);
 
                 if (suonino)
                 {
-                    sounds[0].mute = false;
+                    sounds[0].Stop();
                     sounds[1].Stop();
+                    sounds[2].Stop();
                 }
                 if (percent <= 0f)
                 {
@@ -78,6 +83,7 @@ public class DissolveSphere : MonoBehaviour {
                     dissolto = true;
                 }
             }
+        }
         else
             if (distanza(player) < sp.distance)
             dissolvi = true;

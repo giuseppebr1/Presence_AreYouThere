@@ -27,8 +27,11 @@ public class sparizioni : MonoBehaviour
             dis[j++] = p.GetComponent<DissolveSphere>(); 
         }
         j = 0;
-        GetComponent<apparizioni>().startGuidato();
+        //GetComponent<apparizioni>().startGuidato();
+        Debug.Log("CACCHEETTA");
     }
+
+
 
     // Update is called once per frame
     void Update()

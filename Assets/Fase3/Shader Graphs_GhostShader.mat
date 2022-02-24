@@ -39,12 +39,13 @@ Material:
     - Vector1_7d16cc9b418843dea1266b1684e40eb8: 0.01
     - Vector1_a3228f34b1734f39adf694b524aa054b: 1
     - _Fade: 0.19
-    - _FresnelPower: 2.58
-    - _InteriorSpread: -10.2
+    - _FresnelPower: 0.81
+    - _InteriorSpread: -9.77
     - _fade: 225.11
     m_Colors:
     - Color_321321373e964dada331aee1e8090c7b: {r: 0.5651477, g: 0.6668867, b: 0.7075472, a: 0}
     - Color_8022160ae47341f4be5a0a7749f85f5d: {r: 0.990566, g: 0.978106, b: 0.978106, a: 1}
     - Color_a9ff04d006ad485b9b77ffd80df9944c: {r: 1, g: 1, b: 1, a: 1}
     - Vector3_08e4163104f145c4a9767d7cf513beae: {r: 0, g: 0, b: 0, a: 0}
+    - _EdgeColor: {r: 0.5651477, g: 0.6668867, b: 0.7075472, a: 0}
   m_BuildTextureStacks: []

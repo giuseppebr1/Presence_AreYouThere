@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject s in sequenza)
             s.SetActive(false);
+        sequenza[0].SetActive(true);
         origin = new Vector3(0f, 0f, 0f);
         //fade = GameObject.Find("FadeCanva").GetComponent<Renderer>().material;
         fade = GameObject.Find("FadeCanva").GetComponent<Image>();
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
                 fadeIn = false;
                 visore.transform.position = new Vector3(0f, 0.5f, 0f);
                 nextScene();
-                Debug.Log("Aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
             }
         }
         if (fadeOut) //debug
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
             //nextState();
             percent = Mathf.MoveTowards(percent, 1, velocitaFade * Time.deltaTime);
             fade.color = new Color(255, 255, 255, (percent-1)*(-1));
-            Debug.Log("PAAAAAAQ " + fade.color.a);
+
             //fade.SetFloat("_fade", percent);
             if (fade.color.a <= 0)
             {
@@ -69,18 +70,34 @@ public class GameManager : MonoBehaviour
             case 0: //2->3 reticolo-vr
                 state++;
                 sequenza[state].SetActive(true);
+                visore.GetComponent<apparizioni>().startGuidato();
+                Vector3 cameraForward = visore.transform.forward;
+                cameraForward.y = 0;
+                cameraForward.Normalize();
+                GameObject.Find("vitauniversoetuttoquanto").transform.forward = cameraForward;
+                //Vector3 cameraForward = visore.transform.forward;
+                //GameObject.Find("vitauniversoetuttoquanto").transform.rotation = new Vector3(visore.transform.rotation.y);
+
+
                 percent = 0f;
                 fadeOut = true;
+                percent = 0f;
                 break;
             case 1://3->4 verso pallagiorgia
+                state++;
+                percent = 0f;
+                fadeOut = true;
+                sequenza[state].SetActive(true);
+                GameObject.Find("360VideoView_Camera1").GetComponent<AudioSource>().Play(0);
+                StartCoroutine(stoppaRingtone());
+                break;
+            case 2://4->5 tra le due pallex
                 state++;
                 sequenza[state].SetActive(true);
                 percent = 0f;
                 fadeOut = true;
-                GameObject.Find("360VideoView").GetComponent<AudioSource>().Play(0);
-                StartCoroutine(stoppaRingtone());
                 break;
-            case 2://3->4 tra le due pallex
+            case 3://5->6 tra le due pallex
                 state++;
                 sequenza[state].SetActive(true);
                 percent = 0f;
@@ -92,7 +109,7 @@ public class GameManager : MonoBehaviour
     IEnumerator stoppaRingtone()
     {
         yield return new WaitForSeconds(5);
-        GameObject.Find("360VideoView").GetComponent<AudioSource>().Stop();
+        GameObject.Find("360VideoView_Camera1").GetComponent<AudioSource>().Stop();
     }
 
     //void fadeIn()

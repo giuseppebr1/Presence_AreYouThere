@@ -68,7 +68,7 @@ public class postManager : MonoBehaviour
             */
 
 
-            if (distanzaFinale() < 5)
+            if (distanzaFinale() < 15)
                 fade();
 
 
@@ -95,7 +95,8 @@ public class postManager : MonoBehaviour
 
     void fade()
     {
-        //todo
-        Debug.Log("Finale");
+        GameObject.Find("GameManager").GetComponent<GameManager>().fadeIn = true;
+        GameObject.Find("shepard").GetComponent<AudioSource>().Stop();
+        //GameObject.Find("smslungo").GetComponent<AudioSource>();
     }
 }
