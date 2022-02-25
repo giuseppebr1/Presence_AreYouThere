@@ -18,14 +18,15 @@ namespace PathCreation.Examples
         void Start() {
 
             //NEW VERSION
-            List<Vector3> pathPoints = GetPathPoints(pathCreator, 100);
-            transform.position = pathPoints[0];
-            transform.DOPath(pathPoints.ToArray(),duration).OnComplete(() => 
-            {
-                OnSpherePathComplete();
-            });
+            
+            //List<Vector3> pathPoints = GetPathPoints(pathCreator, 100);
+            //transform.position = pathPoints[0];
+            //transform.DOPath(pathPoints.ToArray(),duration).OnComplete(() => 
+            //{
+            //    OnSpherePathComplete();
+            //});
 
-            return;
+            //return;
 
             if (pathCreator != null)
             {
@@ -38,7 +39,7 @@ namespace PathCreation.Examples
         void Update()
         {
 
-            return;
+            //return;
 
             //OLD VERSION
             if (pathCreator != null)

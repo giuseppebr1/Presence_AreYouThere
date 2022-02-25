@@ -63,7 +63,7 @@ public class postManager : MonoBehaviour
 
             //if (distanzaFinale() < 70 && distanzaFinale() > 68)
             //    movementSpeed = movementSpeed / 4 * 3;
-            Debug.Log("distanza " + distanzaFinale());
+            //Debug.Log("distanza " + distanzaFinale());
             //Debug.Log("velocita " + movementSpeed);
 
 

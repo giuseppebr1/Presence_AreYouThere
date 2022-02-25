@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             //fade.SetFloat("_fade", percent);
             //Debug.Log("AAAAAAA");
             fade.color = new Color(255,255,255,percent);
-            Debug.Log("PERCENT "+ percent);
+            //Debug.Log("PERCENT "+ percent);
             if (percent >= 1f)
             {
                 fadeIn = false;
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
                 //GraphicsSettings.renderPipelineAsset = null;
                 sequenza[state].SetActive(true);
                 GameObject.Find("Flippata").GetComponent<AudioSource>().Play(0);
-                StartCoroutine(stoppaRingtone());
+                //StartCoroutine(stoppaRingtone());
                 break;
             case 2://4->5 tra le due pallex
                 state++;
@@ -126,11 +126,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator stoppaRingtone()
-    {
-        yield return new WaitForSeconds(5);
-        GameObject.Find("Flippata").GetComponent<AudioSource>().Stop();
-    }
+    //IEnumerator stoppaRingtone()
+    //{
+    //    yield return new WaitForSeconds(23.5f);
+    //    //GameObject.Find("Flippata").GetComponent<AudioSource>().Stop();
+    //}
 
     //void fadeIn()
     //{
