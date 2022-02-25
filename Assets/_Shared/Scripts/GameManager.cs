@@ -37,8 +37,21 @@ public class GameManager : MonoBehaviour
         //    GetComponent<AudioSource>().Play();
         //    suona = false;
         //}
+        if (state > 0 && Input.GetKeyDown("space"))
+        {
+            percent = 0f;
+            fadeIn = true;
+        }
+        else
+            if (state == 0 && Input.GetKeyDown(KeyCode.F))
+        {
+            percent = 0f;
+            fadeIn = true;
+            GameObject.Find("shepard").GetComponent<AudioSource>().Stop();
+        }
         if (fadeIn) //debug
         {
+
             //nextState();
             percent = Mathf.MoveTowards(percent, 1, velocitaFade * Time.deltaTime);
             //fade.SetFloat("_fade", percent);
